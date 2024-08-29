@@ -1,0 +1,71 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+// Student class implementing Serializable to allow object serialization
+class Student implements Serializable {
+    private int rollNo;
+    private String name;
+
+    public Student(int rollNo, String name) {
+        this.rollNo = rollNo;
+        this.name = name;
+    }
+
+    public int getRollNo() {
+        return rollNo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Roll No: " + rollNo + ", Name: " + name;
+    }
+}
+
+public class StudentFileOperations {
+
+    // Method to insert student details into the file
+    public static void insertStudentDetails(Student student, String fileName) {
+        List<Student> students = readAllStudents(fileName); // Read existing students from file
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            students.add(student); // Add the new student to the list
+            oos.writeObject(students); // Write the updated list back to the file
+            System.out.println("Student details saved successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to fetch all student details from the file
+    @SuppressWarnings("unchecked")
+    public static List<Student> readAllStudents(String fileName) {
+        List<Student> students = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
+            students = (List<Student>) ois.readObject(); // Read the list of students from the file
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found. A new file will be created.");
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+
+    public static void main(String[] args) {
+        String fileName = "students.dat"; // File where student details will be saved
+
+        // Insert a few students
+        insertStudentDetails(new Student(1, "John Doe"), fileName);
+        insertStudentDetails(new Student(2, "Jane Smith"), fileName);
+
+        // Fetch and display all students
+        List<Student> students = readAllStudents(fileName);
+        for (Student student : students) {
+            System.out.println(student);
+        }
+    }
+}
