@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .menu-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .menu-container ul {
+            list-style-type: none;
+        }
+
+        .menu-container ul li {
+            margin: 10px 0;
+        }
+
+        .menu-container ul li a {
+            text-decoration: none;
+            color: white;
+            background-color: #5cb85c;
+            padding: 10px 15px;
+            display: block;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-container ul li a:hover {
+            background-color: #4cae4c;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <h1>Library Menu</h1>
+        <ul>
+            <li><a href="#addBook">Add Book</a></li>
+            <li><a href="#issueBook">Issue Book</a></li>
+            <li><a href="#returnBook">Return Book</a></li>
+            <li><a href="#searchBook">Search Book</a></li>
+            <li><a href="#viewMembers">View Members</a></li>
+        </ul>
+        <div class="footer">
+            &copy; 2024 Library Management System
+        </div>
+    </div>
+
+</body>
+</html>
