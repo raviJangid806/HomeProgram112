@@ -1,0 +1,35 @@
+Here's the email using the format with your updated topics:
+
+---
+
+**Subject:** Update on Today's Study Progress
+
+Dear [Recipient's Name],
+
+I hope you're doing well. I wanted to share an update on the topics I studied today. Below is a summary of my progress and key learnings:
+
+1. **@ModelMapper**
+   - **Completed**: I worked on integrating the @ModelMapper annotation to efficiently map data between DTOs and entities in my application.
+   - **Key Learning**: I learned how @ModelMapper simplifies object mapping, reduces boilerplate code, and enhances code readability when handling complex objects in a Spring application.
+
+2. **@ModelAttribute**
+   - **Completed**: I practiced using the @ModelAttribute annotation to bind request data to model attributes in controllers.
+   - **Key Learning**: I learned how @ModelAttribute helps streamline the handling of form data and binds data directly to objects, simplifying the passing of data between the view and controller.
+
+3. **@RequestParam**
+   - **Completed**: I used the @RequestParam annotation to capture query parameters and map them to controller method parameters.
+   - **Key Learning**: I gained a better understanding of how @RequestParam makes it easy to handle and pass parameters from HTTP requests, enhancing the flexibility of my Spring MVC applications.
+
+4. **Login and Signup Pages with Backend Functionality**
+   - **Completed**: I created login and signup pages along with their backend functionality, including user authentication and form validation.
+   - **Key Learning**: I learned how to integrate form submission with backend logic to securely handle user registration and login, using Spring Boot for backend processing and validation.
+
+Please let me know if you have any questions or need more details on the topics I covered.
+
+Best regards,  
+[Your Name]  
+[Your Position]
+
+---
+
+This is the refined version based on the topics you provided.
