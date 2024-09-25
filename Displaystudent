@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .detail {
+            background-color: #eaeaea;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .detail h2 {
+            font-size: 20px;
+            color: #555;
+        }
+        .detail p {
+            font-size: 16px;
+            color: #777;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Details</h1>
+        <div class="detail">
+            <h2>Name:</h2>
+            <p>John Doe</p>
+        </div>
+        <div class="detail">
+            <h2>Age:</h2>
+            <p>21</p>
+        </div>
+        <div class="detail">
+            <h2>Course:</h2>
+            <p>Computer Science</p>
+        </div>
+        <div class="detail">
+            <h2>University:</h2>
+            <p>ABC University</p>
+        </div>
+        <button class="button">Contact</button>
+    </div>
+</body>
+</html>
