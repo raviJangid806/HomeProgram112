@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .student-info {
+            display: none;
+            margin-top: 20px;
+        }
+        .student-info.active {
+            display: block;
+        }
+        .detail {
+            background-color: #eaeaea;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .detail h2 {
+            font-size: 20px;
+            color: #555;
+        }
+        .detail p {
+            font-size: 16px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Blog</h1>
+        <p>Enter the student's name:</p>
+        <input type="text" id="studentName" placeholder="Student Name">
+        <button class="button" onclick="showStudentInfo()">OK</button>
+
+        <div id="studentInfo" class="student-info">
+            <div class="detail">
+                <h2>Name:</h2>
+                <p id="displayStudentName">John Doe</p>
+            </div>
+            <div class="detail">
+                <h2>Age:</h2>
+                <p>21</p>
+            </div>
+            <div class="detail">
+                <h2>Course:</h2>
+                <p>Computer Science</p>
+            </div>
+            <div class="detail">
+                <h2>University:</h2>
+                <p>ABC University</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showStudentInfo() {
+            const name = document.getElementById("studentName").value;
+            const studentInfo = document.getElementById("studentInfo");
+            const displayStudentName = document.getElementById("displayStudentName");
+
+            if (name) {
+                displayStudentName.innerText = name;
+                studentInfo.classList.add("active");
+            }
+        }
+    </script>
+</body>
+</html>
