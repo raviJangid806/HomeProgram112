@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload and Preview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            cursor: pointer;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .container img:hover {
+            opacity: 0.7;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .preview {
+            margin-top: 20px;
+            max-width: 100%;
+            max-height: 300px;
+            display: none;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Upload and Preview Your Image</h2>
+        
+        <!-- Clickable Logo for Upload -->
+        <label for="imageUpload">
+            <img src="your-logo.png" id="logo" alt="Logo" />
+        </label>
+        <input type="file" id="imageUpload" accept="image/*" onchange="previewImage()">
+        
+        <!-- Image Preview Section -->
+        <img id="imagePreview" class="preview" alt="Preview" />
+
+        <!-- Dummy Submit Button -->
+        <button class="submit-btn">Submit Image (Placeholder)</button>
+    </div>
+
+    <script>
+        // Function to preview the image after selecting a file
+        function previewImage() {
+            const file = document.getElementById('imageUpload').files[0];
+            const preview = document.getElementById('imagePreview');
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+
+</body>
+</html>
