@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            width: 100%;
+        }
+        .option-box {
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            width: 40%;
+            transition: transform 0.3s;
+        }
+        .option-box:hover {
+            transform: scale(1.05);
+        }
+        .option-box h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .option-box a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #6a11cb;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .option-box a:hover {
+            background-color: #2575fc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Admin Section -->
+        <div class="option-box">
+            <h2>Admin</h2>
+            <a href="#">Admin Login</a>
+        </div>
+
+        <!-- User Section -->
+        <div class="option-box">
+            <h2>User</h2>
+            <a href="#">User Login</a><br>
+            <a href="#">User Signup</a>
+        </div>
+    </div>
+</body>
+</html>
