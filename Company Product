@@ -1,0 +1,93 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.jsp">Home</a></li>
+                <li><a href="about.jsp">About Us</a></li>
+                <li><a href="contact.jsp">Contact</a></li>
+                <li><a href="cart.jsp">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="filters">
+            <h3>Filters</h3>
+            <form id="filterForm">
+                <div>
+                    <label for="category">Category:</label>
+                    <select id="category">
+                        <option value="">All</option>
+                        <option value="lighting">Lighting</option>
+                        <option value="circuit">Circuit</option>
+                        <option value="tools">Tools</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="priceRange">Price Range:</label>
+                    <input type="range" id="priceRange" min="0" max="1000" step="50">
+                </div>
+                <div>
+                    <label for="brand">Brand:</label>
+                    <select id="brand">
+                        <option value="">All</option>
+                        <option value="brandA">Brand A</option>
+                        <option value="brandB">Brand B</option>
+                    </select>
+                </div>
+                <button type="button" onclick="applyFilters()">Apply Filters</button>
+            </form>
+        </aside>
+
+        <main class="product-listing">
+            <input type="text" id="search" placeholder="Search products..." onkeyup="searchProducts()">
+            <div class="grid">
+                <% 
+                    // Sample product data
+                    List<Map<String, String>> products = new ArrayList<>();
+                    products.add(Map.of("name", "LED Bulb", "description", "Energy-efficient LED bulb", "price", "$10", "image", "led-bulb.jpg"));
+                    products.add(Map.of("name", "Wiring Kit", "description", "Complete wiring kit for home", "price", "$25", "image", "wiring-kit.jpg"));
+                    products.add(Map.of("name", "Electric Drill", "description", "Powerful electric drill for various tasks", "price", "$150", "image", "electric-drill.jpg"));
+                    
+                    for (Map<String, String> product : products) {
+                %>
+                    <div class="card">
+                        <img src="<%= product.get("image") %>" alt="<%= product.get("name") %>">
+                        <h4><%= product.get("name") %></h4>
+                        <p><%= product.get("description") %></p>
+                        <p class="price"><%= product.get("price") %></p>
+                        <button class="book-button">Book Now</button>
+                    </div>
+                <% 
+                    } 
+                %>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <ul>
+            <li><a href="privacy.jsp">Privacy Policy</a></li>
+            <li><a href="terms.jsp">Terms of Service</a></li>
+            <li>
+                <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+                <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+                <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+            </li>
+        </ul>
+    </footer>
+</body>
+</html>
