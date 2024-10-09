@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - RJ Enterprise</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .dashboard-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .option-btn {
+            margin: 20px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <h1 class="mb-4">Dashboard</h1>
+        <a href="view-products.html" class="btn btn-primary option-btn">View Products</a>
+        <a href="show-users.html" class="btn btn-secondary option-btn">Show Users</a>
+        <a href="most-sold-products.html" class="btn btn-success option-btn">Most Sold Products</a>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
