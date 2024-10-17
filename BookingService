@@ -1,0 +1,154 @@
+package com.bookingproject.event.service;
+
+import com.bookingproject.event.entity.Booking;
+import com.bookingproject.event.entity.Event;
+import com.bookingproject.event.entity.User;
+import com.bookingproject.event.exception.ResourceNotFoundException;
+import com.bookingproject.event.repository.BookingRepository;
+import com.bookingproject.event.repository.EventRepository;
+import com.bookingproject.event.repository.UserRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+public class BookingServiceTest {
+
+    @InjectMocks
+    private BookingService bookingService;
+
+    @Mock
+    private BookingRepository bookingRepository;
+
+    @Mock
+    private EventRepository eventRepository;
+
+    @Mock
+    private UserRepository userRepository;
+
+    private Booking testBooking;
+    private User testUser;
+    private Event testEvent;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+
+        // Set up mock data for User, Event, and Booking
+        testUser = new User(1, "John Doe", "john.doe@example.com", "password123");
+        testEvent = new Event(1, "Tech Conference", "A conference about tech trends", LocalDateTime.now(), "NYC", 100);
+        testBooking = new Booking(testUser, testEvent, "CONFIRMED", "2024-10-17");
+    }
+
+    @Test
+    public void testCreateBooking_Success() {
+        // Mocking the event and user repository calls
+        when(userRepository.findById(testUser.getId())).thenReturn(Optional.of(testUser));
+        when(eventRepository.findById(testEvent.getId())).thenReturn(Optional.of(testEvent));
+        when(bookingRepository.save(any(Booking.class))).thenReturn(testBooking);
+
+        // Creating a new booking
+        Booking createdBooking = bookingService.createBooking(testUser.getId(), testEvent.getId(), "CONFIRMED");
+
+        // Verifying the save operation and asserting the result
+        verify(bookingRepository, times(1)).save(any(Booking.class));
+        assertNotNull(createdBooking);
+        assertEquals(testUser.getName(), createdBooking.getUser().getName());
+        assertEquals(testEvent.getTitle(), createdBooking.getEvent().getTitle());
+        assertEquals("CONFIRMED", createdBooking.getStatus());
+    }
+
+    @Test
+    public void testCreateBooking_UserNotFound() {
+        // Mocking the case where the user is not found
+        when(userRepository.findById(testUser.getId())).thenReturn(Optional.empty());
+
+        // Expecting ResourceNotFoundException
+        assertThrows(ResourceNotFoundException.class, () -> bookingService.createBooking(testUser.getId(), testEvent.getId(), "CONFIRMED"));
+    }
+
+    @Test
+    public void testCreateBooking_EventNotFound() {
+        // Mocking the case where the event is not found
+        when(eventRepository.findById(testEvent.getId())).thenReturn(Optional.empty());
+
+        // Expecting ResourceNotFoundException
+        assertThrows(ResourceNotFoundException.class, () -> bookingService.createBooking(testUser.getId(), testEvent.getId(), "CONFIRMED"));
+    }
+
+    @Test
+    public void testGetBookingById_Success() {
+        // Mocking the repository findById call
+        when(bookingRepository.findById(testBooking.getId())).thenReturn(Optional.of(testBooking));
+
+        // Retrieving the booking by ID
+        Booking foundBooking = bookingService.getBookingById(testBooking.getId());
+
+        // Asserting the result
+        assertNotNull(foundBooking);
+        assertEquals(testBooking.getStatus(), foundBooking.getStatus());
+        assertEquals(testBooking.getEvent().getTitle(), foundBooking.getEvent().getTitle());
+    }
+
+    @Test
+    public void testGetBookingById_NotFound() {
+        // Mocking the case where the booking is not found
+        when(bookingRepository.findById(testBooking.getId())).thenReturn(Optional.empty());
+
+        // Expecting ResourceNotFoundException
+        assertThrows(ResourceNotFoundException.class, () -> bookingService.getBookingById(testBooking.getId()));
+    }
+
+    @Test
+    public void testUpdateBookingStatus_Success() {
+        // Mocking the repository findById and save calls
+        when(bookingRepository.findById(testBooking.getId())).thenReturn(Optional.of(testBooking));
+        when(bookingRepository.save(any(Booking.class))).thenReturn(testBooking);
+
+        // Updating the booking status
+        Booking updatedBooking = bookingService.updateBookingStatus(testBooking.getId(), "CANCELLED");
+
+        // Asserting the updated status
+        assertNotNull(updatedBooking);
+        assertEquals("CANCELLED", updatedBooking.getStatus());
+        verify(bookingRepository, times(1)).save(testBooking);
+    }
+
+    @Test
+    public void testUpdateBookingStatus_NotFound() {
+        // Mocking the case where the booking is not found
+        when(bookingRepository.findById(testBooking.getId())).thenReturn(Optional.empty());
+
+        // Expecting ResourceNotFoundException
+        assertThrows(ResourceNotFoundException.class, () -> bookingService.updateBookingStatus(testBooking.getId(), "CANCELLED"));
+    }
+
+    @Test
+    public void testDeleteBooking_Success() {
+        // Mocking the repository findById and delete calls
+        when(bookingRepository.findById(testBooking.getId())).thenReturn(Optional.of(testBooking));
+        doNothing().when(bookingRepository).deleteById(testBooking.getId());
+
+        // Deleting the booking
+        bookingService.deleteBooking(testBooking.getId());
+
+        // Verifying the delete operation
+        verify(bookingRepository, times(1)).deleteById(testBooking.getId());
+    }
+
+    @Test
+    public void testDeleteBooking_NotFound() {
+        // Mocking the case where the booking is not found
+        when(bookingRepository.findById(testBooking.getId())).thenReturn(Optional.empty());
+
+        // Expecting ResourceNotFoundException
+        assertThrows(ResourceNotFoundException.class, () -> bookingService.deleteBooking(testBooking.getId()));
+    }
+}
