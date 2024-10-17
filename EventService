@@ -1,0 +1,108 @@
+package com.bookingproject.event.service;
+
+import com.bookingproject.event.entity.Event;
+import com.bookingproject.event.exception.ResourceNotFoundException;
+import com.bookingproject.event.repository.EventRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+public class EventServiceTest {
+
+    @InjectMocks
+    private EventService eventService;
+
+    @Mock
+    private EventRepository eventRepository;
+
+    private Event testEvent;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+        testEvent = new Event(1, "Tech Conference", "A conference about tech trends", LocalDateTime.now(), "NYC", 100);
+    }
+
+    @Test
+    public void testCreateEvent() {
+        // Mocking the repository's save method
+        when(eventRepository.save(any(Event.class))).thenReturn(testEvent);
+
+        Event createdEvent = eventService.createEvent(testEvent);
+
+        // Verify that the save method is called and that the returned event matches the test data
+        verify(eventRepository, times(1)).save(testEvent);
+        assertNotNull(createdEvent);
+        assertEquals("Tech Conference", createdEvent.getTitle());
+    }
+
+    @Test
+    public void testGetEventById_Success() {
+        // Mocking the repository's findById method
+        when(eventRepository.findById(testEvent.getId())).thenReturn(Optional.of(testEvent));
+
+        Event event = eventService.getEventById(testEvent.getId());
+
+        // Verify that the findById method is called and the returned event matches
+        verify(eventRepository, times(1)).findById(testEvent.getId());
+        assertNotNull(event);
+        assertEquals("Tech Conference", event.getTitle());
+    }
+
+    @Test
+    public void testGetEventById_NotFound() {
+        // Mocking a scenario where the event is not found
+        when(eventRepository.findById(testEvent.getId())).thenReturn(Optional.empty());
+
+        // Expect the ResourceNotFoundException to be thrown
+        assertThrows(ResourceNotFoundException.class, () -> eventService.getEventById(testEvent.getId()));
+    }
+
+    @Test
+    public void testUpdateEvent_Success() {
+        Event updatedEvent = new Event(1, "Updated Tech Conference", "Updated description", LocalDateTime.now(), "NYC", 100);
+
+        // Mocking the repository's findById and save methods
+        when(eventRepository.findById(testEvent.getId())).thenReturn(Optional.of(testEvent));
+        when(eventRepository.save(any(Event.class))).thenReturn(updatedEvent);
+
+        Event result = eventService.updateEvent(testEvent.getId(), updatedEvent);
+
+        // Verify that the event is updated successfully
+        assertNotNull(result);
+        assertEquals("Updated Tech Conference", result.getTitle());
+        verify(eventRepository, times(1)).save(updatedEvent);
+    }
+
+    @Test
+    public void testDeleteEvent_Success() {
+        // Mocking the repository's findById and deleteById methods
+        when(eventRepository.findById(testEvent.getId())).thenReturn(Optional.of(testEvent));
+        doNothing().when(eventRepository).deleteById(testEvent.getId());
+
+        eventService.deleteEvent(testEvent.getId());
+
+        // Verify that the deleteById method is called
+        verify(eventRepository, times(1)).deleteById(testEvent.getId());
+    }
+
+    @Test
+    public void testGetAllEvents() {
+        // Mocking the repository's findAll method
+        when(eventRepository.findAll()).thenReturn(Arrays.asList(testEvent));
+
+        // Retrieve all events
+        assertEquals(1, eventService.getAllEvents().size());
+        verify(eventRepository, times(1)).findAll();
+    }
+}
