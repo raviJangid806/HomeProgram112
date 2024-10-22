@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "firstName": "John",
+  "lastName": "Doe",
+  "isPremium": true,
+  "createdAt": "2023-10-21T14:00:00",
+  "updatedAt": "2023-10-22T16:00:00",
+  "email": "john.doe@example.com",
+  "address": "1234 Elm Street, Springfield, IL, 62704",
+  "mobileNumber": "123-456-7890"
+}
