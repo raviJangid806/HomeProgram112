@@ -1,0 +1,58 @@
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+public class OrderService {
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    // Create Order
+    public OrderDto createOrder(OrderDto orderDto) {
+        Order order = modelMapper.map(orderDto, Order.class);
+        Order savedOrder = orderRepository.save(order);
+        return modelMapper.map(savedOrder, OrderDto.class);
+    }
+
+    // Get Order by ID
+    public OrderDto getOrderById(Long id) {
+        Order order = orderRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Order not found with id: " + id));
+        return modelMapper.map(order, OrderDto.class);
+    }
+
+    // Get all Orders
+    public List<OrderDto> getAllOrders() {
+        List<Order> orders = orderRepository.findAll();
+        return orders.stream()
+            .map(order -> modelMapper.map(order, OrderDto.class))
+            .collect(Collectors.toList());
+    }
+
+    // Update Order
+    public OrderDto updateOrder(Long id, OrderDto orderDto) {
+        Order order = orderRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Order not found with id: " + id));
+        order.setDeliveryAddress(orderDto.getDeliveryAddress());
+        order.setDistanceFromWareHouse(orderDto.getDistanceFromWareHouse());
+        order.setIsDelivered(orderDto.getIsDelivered());
+        order.setUpdatedAt(orderDto.getUpdatedAt());
+
+        Order updatedOrder = orderRepository.save(order);
+        return modelMapper.map(updatedOrder, OrderDto.class);
+    }
+
+    // Delete Order
+    public void deleteOrder(Long id) {
+        Order order = orderRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Order not found with id: " + id));
+        orderRepository.delete(order);
+    }
+}
