@@ -1,0 +1,101 @@
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "orders")  // 'order' is a reserved keyword in many databases, so 'orders' is used as the table name
+public class Order {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private LocalDateTime placedTime;
+
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)  // Many orders can belong to one customer
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
+
+    @Column(nullable = false)
+    private String deliveryAddress;
+
+    @Column(nullable = false)
+    private Double distanceFromWareHouse;
+
+    @Column(nullable = false)
+    private Boolean isDelivered;
+
+    // Constructors
+    public Order() {
+    }
+
+    public Order(LocalDateTime placedTime, LocalDateTime updatedAt, Customer customer, String deliveryAddress, Double distanceFromWareHouse, Boolean isDelivered) {
+        this.placedTime = placedTime;
+        this.updatedAt = updatedAt;
+        this.customer = customer;
+        this.deliveryAddress = deliveryAddress;
+        this.distanceFromWareHouse = distanceFromWareHouse;
+        this.isDelivered = isDelivered;
+    }
+
+    // Getters and Setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getPlacedTime() {
+        return placedTime;
+    }
+
+    public void setPlacedTime(LocalDateTime placedTime) {
+        this.placedTime = placedTime;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    public Double getDistanceFromWareHouse() {
+        return distanceFromWareHouse;
+    }
+
+    public void setDistanceFromWareHouse(Double distanceFromWareHouse) {
+        this.distanceFromWareHouse = distanceFromWareHouse;
+    }
+
+    public Boolean getIsDelivered() {
+        return isDelivered;
+    }
+
+    public void setIsDelivered(Boolean isDelivered) {
+        this.isDelivered = isDelivered;
+    }
+}
