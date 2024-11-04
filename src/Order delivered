@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .order-details-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .order-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .order-header h2 {
+            color: #007bff;
+        }
+        .order-item {
+            margin-bottom: 1rem;
+        }
+        .status-delivered {
+            color: green;
+        }
+        .status-not-delivered {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container order-details-container">
+    <div class="order-header">
+        <h2>Order Details</h2>
+        <p class="text-muted">Customer Email: <span th:text="${order.customerEmail}">customer@example.com</span></p>
+    </div>
+
+    <div class="order-item">
+        <h5>Delivery Date & Time</h5>
+        <p><span th:text="${order.deliveryDateTime}">2024-11-04 10:00 AM</span></p>
+    </div>
+
+    <div class="order-item">
+        <h5>Delivery Address</h5>
+        <p><span th:text="${order.deliveryAddress}">123 Main St, Cityville</span></p>
+    </div>
+
+    <div class="order-item">
+        <h5>Distance from Warehouse</h5>
+        <p><span th:text="${order.distance}">15</span> km</p>
+    </div>
+
+    <div class="order-item">
+        <h5>Delivery Status</h5>
+        <p th:classappend="${order.isDelivered} ? 'status-delivered' : 'status-not-delivered'">
+            <span th:text="${order.isDelivered} ? 'Delivered' : 'Not Delivered'">Not Delivered</span>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
