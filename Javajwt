@@ -1,0 +1,35 @@
+document.getElementById("loginForm").addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    const response = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      const token = data.token;
+      const roles = data.roles;
+
+      // Store JWT in local storage
+      localStorage.setItem("jwt", token);
+
+      // Redirect based on role
+      if (roles.includes("ROLE_ADMIN")) {
+        window.location.href = "/admin.html";
+      } else {
+        window.location.href = "/user.html";
+      }
+    } else {
+      alert("Invalid credentials");
+    }
+  } catch (error) {
+    console.error("Error during login:", error);
+    alert("Something went wrong");
+  }
+});
