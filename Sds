@@ -1,0 +1,214 @@
+In the Book Store project, there are three distinct roles with specific responsibilities. The Admin has the highest level of control, managing the entire platform, including user accounts (both owners and customers), products, and system settings. They ensure the smooth operation of the website, oversee security, and monitor all activities. The Owner (Shopkeeper) manages the product catalog, adding, updating, or removing products, and has the ability to upload products in bulk via CSV files. However, they cannot manage customer accounts or platform settings. The Customer interacts with the platform by browsing products, adding items to the cart, and placing orders. Customers must log in or sign up to complete orders and view order history. These roles work together to ensure a functional and secure e-commerce experience.
+
+Here’s a comprehensive Software Development Specification (SDS) for your Book Store project based on the details provided:
+
+
+---
+
+Software Development Specification (SDS)
+
+1. Introduction
+
+This document outlines the software development specifications for the Book Store application, an e-commerce platform designed to facilitate the purchase and management of books. The application caters to three distinct roles: Admin, Owner (Shopkeeper), and Customer, with functionalities tailored to each role. It aims to provide a seamless user experience, robust management features, and efficient data handling.
+
+
+---
+
+2. Purpose
+
+The purpose of the Book Store system is to create an efficient e-commerce platform where customers can browse and purchase books, owners can manage their shop inventory and orders, and admins can oversee the entire system. It will streamline operations like inventory management, order processing, and reporting, while ensuring a secure and user-friendly environment.
+
+
+---
+
+3. Scope
+
+The Book Store system will include functionalities for browsing products, managing user roles, processing orders, and providing customer support. It allows owners to upload bulk products, customers to add items to their cart, and admins to manage users and oversee the system. The application will support operations like sending email notifications, generating order invoices as PDFs, and tracking inventory. The system will also maintain order history and ensure efficient handling of product data using CSV files.
+
+
+---
+
+4. Functionality Expected
+
+Customer Features
+
+Browse books without login/signup.
+
+View product details (description, price, discounts, availability).
+
+Add, update, or remove items in the cart (stored in cookies for non-logged-in users).
+
+Place orders (login/signup required).
+
+Receive email notifications and PDF invoices for successful orders.
+
+View order history on the profile page.
+
+
+Owner Features
+
+Add, update, or delete products individually or in bulk (via CSV file).
+
+Manage product inventory and track stock availability.
+
+View sales data and order statuses.
+
+
+Admin Features
+
+Manage owners, customers, and products.
+
+Monitor platform activity and system health.
+
+Oversee inventory and ensure smooth operations.
+
+Handle user authentication and roles.
+
+
+
+---
+
+5. System Features
+
+5.1. Security
+
+Role-based access control for Admin, Owner, and Customer.
+
+Secure login/signup process for all users.
+
+
+5.2. Data Management
+
+Products and cart items stored in cookies for non-logged-in users.
+
+Database integration for logged-in users to sync cart data across devices.
+
+Bulk product upload through CSV for owners.
+
+
+5.3. Notifications and Reports
+
+Email notifications for order confirmation.
+
+Automatic PDF generation for invoices.
+
+Real-time updates on inventory status.
+
+
+
+---
+
+6. System Design
+
+6.1. Architecture
+
+The system follows a 3-tier architecture:
+
+1. Frontend: HTML, CSS, jQuery, Thymeleaf, and Bootstrap for user interfaces.
+
+
+2. Backend: Java (21, 23), Spring Boot for business logic and REST APIs.
+
+
+3. Database: MySQL for storing product, user, and order data.
+
+
+
+6.2. Modules
+
+1. Authentication Module: Handles login, signup, and session management.
+
+
+2. Product Management Module: Allows owners to add, update, or delete products.
+
+
+3. Cart Module: Manages cart operations for customers.
+
+
+4. Order Management Module: Tracks order placement, generates PDFs, and manages order history.
+
+
+5. Admin Module: Provides admin functionality for managing the platform.
+
+
+
+
+---
+
+7. Technology Stack
+
+Frontend: HTML, CSS, Thymeleaf, jQuery, Bootstrap.
+
+Backend: Java (21, 23), Spring Boot (3.3.4).
+
+Database: MySQL.
+
+Email Service: JavaMail for email notifications.
+
+PDF Generation: iText or Apache PDFBox.
+
+
+
+---
+
+8. Non-Functional Requirements
+
+Scalability: The system should handle concurrent users and a growing database of products.
+
+Performance: Ensure quick response times for browsing, cart operations, and order processing.
+
+Security: Role-based access control, encrypted passwords, and secure APIs.
+
+Usability: Intuitive UI for customers, owners, and admins.
+
+Reliability: Ensure data consistency and uptime of 99.9%.
+
+
+
+---
+
+9. Data Flow
+
+1. Customer Browsing:
+
+Access product catalog directly.
+
+Add items to the cart (cookies for non-logged-in users).
+
+
+
+2. Order Placement:
+
+Login/signup required.
+
+Sync cart data to the database upon login.
+
+Process order and update inventory.
+
+
+
+3. Admin/Owner Operations:
+
+Admin manages users and products.
+
+Owner updates inventory via UI or CSV upload.
+
+
+
+
+
+---
+
+10. Key Constraints
+
+Users must log in to place orders and view order history.
+
+Owners can only manage products; they cannot access customer details.
+
+CSV uploads must follow a strict format with unique product identifiers.
+
+
+
+---
+
+This SDS document ensures clarity on the functional and non-functional requirements of the Book Store system, enabling smooth development and implementation. Let me know if you want additional details for any section!
