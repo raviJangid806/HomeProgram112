@@ -1,0 +1,331 @@
+Functionality Expected from the New System
+
+The new Book Store system is expected to deliver the following functionalities:
+
+
+---
+
+1. User-Side Functionalities
+
+1. Browse Books
+
+Users can browse available books without logging in or signing up.
+
+Each book will display details such as title, author, description, price, discount, and availability.
+
+
+
+2. Cart Management
+
+Add items to the cart.
+
+Update the quantity of items in the cart.
+
+Remove items from the cart.
+
+Persist cart data across sessions for logged-in users.
+
+
+
+3. Order Placement
+
+Users must log in or sign up to place an order.
+
+Check the availability of items before confirming an order.
+
+After a successful order, generate a PDF invoice and send it to the user’s email.
+
+
+
+4. Order History
+
+Logged-in users can view their past orders on their profile page.
+
+
+
+5. Coupon Code Application (Optional)
+
+Users can apply coupon codes for discounts during checkout.
+
+
+
+6. Stock Management Display
+
+If an item is out of stock, it should display as "Out of Stock" on the product page.
+
+
+
+
+
+---
+
+2. Admin-Side Functionalities
+
+1. Bulk Product Upload via CSV
+
+Admins can upload product details using a CSV file through a REST API.
+
+The system will handle duplicate rows and ensure each product has a unique identity.
+
+
+
+2. Inventory Management
+
+Admins can add, update, and remove products from the database.
+
+
+
+
+
+---
+
+3. General Functionalities
+
+1. Session Management
+
+For non-logged-in users, cart details will be stored in browser cookies.
+
+For logged-in users, cart details will be stored in the database to ensure accessibility across multiple devices and browsers.
+
+
+
+2. Responsive Design
+
+The frontend should adapt to various devices, ensuring a seamless experience on desktops, tablets, and mobile devices.
+
+
+
+3. Authentication & Authorization
+
+User login/signup using secure mechanisms (e.g., JWT for logged-in sessions).
+
+
+
+4. Email Notification
+
+Send email notifications with a PDF invoice to users after a successful order placement.
+
+
+
+
+
+---
+
+4. Optional Advanced Features (Future Scope)
+
+1. Wishlist
+
+Allow users to save books to a wishlist for future purchase.
+
+
+
+2. Search & Filter
+
+Search for books based on title, author, genre, or price.
+
+Filter books based on categories like price range, discount, and availability.
+
+
+
+3. User Reviews and Ratings
+
+Allow users to leave reviews and ratings for books.
+
+
+
+4. Admin Dashboard
+
+Provide a web-based dashboard for admins to manage inventory and view sales reports.
+
+
+
+
+
+---
+
+Let me know if you need more specific details or examples for each functionality!
+
+Overall Description
+
+
+---
+
+1. Product Perspective
+
+The Book Store application is an e-commerce web application that facilitates book browsing, purchasing, and order management. It is designed for users who wish to buy books and administrators who manage the book inventory.
+
+This system has two main components:
+
+1. Frontend: Built using HTML, CSS, Bootstrap, Thymeleaf, and jQuery, providing an intuitive and user-friendly interface for users.
+
+
+2. Backend: Powered by Java 21/23 with the Spring Boot framework, ensuring secure and efficient business logic processing.
+
+
+3. Database: MySQL is used for data persistence to store user accounts, products, and order details.
+
+
+
+The application operates as a standalone system, similar to platforms like Amazon or Flipkart, but is tailored specifically for books.
+
+
+---
+
+2. Product Features
+
+User Features:
+
+1. Browse books without requiring login/signup.
+
+
+2. Add books to a cart, update quantities, and remove items.
+
+
+3. Log in or sign up to place an order.
+
+
+4. View order history with downloadable PDF invoices.
+
+
+5. Receive email notifications for order confirmations.
+
+
+
+Admin Features:
+
+1. Upload products in bulk using a CSV file via a REST API.
+
+
+2. Ensure each product has a unique identifier and manage duplicates in the uploaded file.
+
+
+
+Additional Features:
+
+Out-of-stock notifications for unavailable books.
+
+Responsive design for compatibility with desktops, tablets, and smartphones.
+
+
+
+---
+
+3. User Classes and Characteristics
+
+1. End Users:
+
+Characteristics:
+
+Users are casual buyers of books.
+
+Some users may browse without purchasing or creating accounts.
+
+
+Access: Can view products, manage their cart, and place orders after logging in.
+
+
+
+2. Administrators:
+
+Characteristics:
+
+Responsible for inventory management.
+
+Technical knowledge to use REST APIs for bulk uploading via CSV.
+
+
+Access: Manage the product inventory.
+
+
+
+
+
+---
+
+4. Operating Environment
+
+1. Hardware:
+
+Server: Cloud-based or on-premise server with sufficient resources to handle concurrent users.
+
+Client: Devices with a modern web browser (Chrome, Firefox, Edge).
+
+
+
+2. Software:
+
+Frontend: HTML, CSS, Bootstrap, jQuery, Thymeleaf.
+
+Backend: Java 21/23, Spring Boot 3.x.
+
+Database: MySQL.
+
+
+
+3. Network:
+
+Requires a stable internet connection for all client-server interactions.
+
+
+
+
+
+---
+
+5. Assumptions and Dependencies
+
+1. Assumptions:
+
+Users have basic knowledge of using e-commerce websites.
+
+Admins are familiar with CSV file formatting for product uploads.
+
+Users have valid email addresses for receiving order notifications.
+
+
+
+2. Dependencies:
+
+Internet connection for accessing the web application.
+
+Email service provider for sending notifications.
+
+Proper configuration of MySQL database and server hosting the backend.
+
+
+
+
+
+---
+
+6. Constraints
+
+1. Time Constraints:
+
+The project needs to be completed within the allocated development cycle.
+
+
+
+2. Scalability Constraints:
+
+Initial deployment will support a small user base, with plans to scale for higher traffic.
+
+
+
+3. Technology Constraints:
+
+Limited to the specified technology stack (Java, Spring Boot, MySQL, etc.).
+
+
+
+
+
+---
+
+This section provides a high-level overview of the system's purpose, target audience, environment, and constraints. Let me know if you'd like further elaboration!
+
+///// purpose 
+The purpose of the Book Store system is to create a seamless e-commerce platform for users to browse, select, and purchase books while offering efficient inventory management tools for administrators. The system is designed to provide a user-friendly interface that allows customers to explore books without the need for login/signup, manage their carts, and place orders securely. For admins, the platform includes functionalities to upload products in bulk using REST APIs, manage stock availability, and ensure data integrity through unique product identifiers. By leveraging a modern technology stack, including Java, Spring Boot, and MySQL, the system aims to deliver a responsive and scalable solution. This application not only ensures a smooth shopping experience for users but also supports future expansion with features like wishlists, advanced search options, and an admin dashboard, making it a robust platform tailored for the book-selling business.
+
+
+The scope of the Book Store project focuses on creating an e-commerce platform tailored for browsing, purchasing, and managing books, with functionalities for both users and administrators. The user side will allow customers to explore books without the need for login or signup, manage their shopping cart, and place orders securely, along with receiving email notifications and PDF invoices. The system will also ensure stock availability is displayed accurately and maintain user order history for logged-in users. On the admin side, the project will include a REST API to upload products in bulk using CSV files and provide inventory management tools to handle product updates, additions, and deletions while ensuring unique product identifiers. Built with Java 21/23, Spring Boot, and MySQL, the system will feature a responsive frontend using HTML, CSS, Bootstrap, and Thymeleaf, ensuring accessibility across devices. Session management will be handled through cookies for non-logged-in users, while logged-in users' cart data will be stored in the database for easy access across devices. The project also leaves room for future enhancements, such as coupon codes and advanced search filters, though features like online payment gateways and extensive analytics will not be part of the initial phase. This scope ensures a robust, scalable, and user-friendly platform that can grow to meet future business needs.
