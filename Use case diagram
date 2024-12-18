@@ -1,0 +1,424 @@
+Use Case Diagram Details
+
+Below is the explanation of the actors, use cases, and relationships involved in your system's use case diagram.
+
+
+---
+
+Actors
+
+1. Customer
+
+Registers, logs in, browses books, adds items to the cart, places orders, views order history, downloads invoices, and manages their profile details.
+
+
+
+2. Admin
+
+Manages customers, products, and shop owners.
+
+
+
+3. System
+
+Provides feedback and performs actions like verifying user credentials, generating invoices, and sending emails.
+
+
+
+
+
+---
+
+Use Cases
+
+1. Register
+
+Description: Customers create an account by entering their details like name, email, password, and phone number.
+
+Actors: Customer
+
+Precondition: Valid email and phone number required.
+
+Postcondition: Account is created, and login is enabled.
+
+
+
+2. Login
+
+Description: Customers log in using their registered email and password.
+
+Actors: Customer
+
+Precondition: Customer must be registered.
+
+Postcondition: Access to personalized features like the cart, orders, and profile.
+
+
+
+3. Add to Cart
+
+Description: Customers add books to their cart by selecting the quantity.
+
+Actors: Customer
+
+Precondition: The product must be available in stock.
+
+Postcondition: Item is added to the cart.
+
+
+
+4. Place Order
+
+Description: Customers place an order for the items in their cart.
+
+Actors: Customer
+
+Precondition: Customer must be logged in, and items must be in stock.
+
+Postcondition: Order is created, and stock is updated.
+
+
+
+5. Order History
+
+Description: Customers can view their past orders, including order dates, items, and statuses.
+
+Actors: Customer
+
+Precondition: Customer must have placed at least one order.
+
+Postcondition: Displays a list of past orders.
+
+
+
+6. Download Invoice
+
+Description: Customers can download a PDF invoice for any completed order.
+
+Actors: Customer
+
+Precondition: The order must be successfully placed.
+
+Postcondition: Invoice is generated and downloaded.
+
+
+
+7. Profile Details
+
+Description: Customers view and manage their profile details like name, email, and phone number.
+
+Actors: Customer
+
+Precondition: Customer must be logged in.
+
+Postcondition: Updates are saved to the database.
+
+
+
+
+
+---
+
+Relationships
+
+1. Association:
+
+The Customer is associated with all use cases, as they perform all listed actions.
+
+The Admin is associated with managing roles and backend operations (not explicitly shown here).
+
+
+
+2. Include:
+
+Login is included in all personalized actions like placing orders, viewing order history, and managing profiles since it is a prerequisite.
+
+Register is a prerequisite for login for new users.
+
+
+
+3. Extend:
+
+Download Invoice extends Order History because the invoice can only be downloaded for completed orders.
+
+
+
+
+
+---
+
+Diagram Overview
+
+The diagram shows the Customer as the primary actor and their interactions with the system, covering all essential features. It also highlights the dependency of some use cases on others, creating a logical flow of functionalities. Let me know if you'd like me to generate the actual diagram.
+
+
+
+Use Case Diagram Details for Owner
+
+Below are the details for the use cases related to the Owner role in your system.
+
+
+---
+
+Actors
+
+1. Owner
+
+Manages their shop and books, interacts with the system to handle their profile, and views orders.
+
+
+
+2. System
+
+Validates the owner's credentials, processes shop creation, handles book management, and maintains records of orders.
+
+
+
+
+
+---
+
+Use Cases
+
+1. Sign Up
+
+Description: An owner registers by providing details like name, email, password, phone number, and other required credentials.
+
+Actors: Owner
+
+Precondition: Valid email and phone number required.
+
+Postcondition: Account is created, enabling login functionality.
+
+
+
+2. Login
+
+Description: Owners log in using their credentials to access their shop and books.
+
+Actors: Owner
+
+Precondition: The owner must be registered.
+
+Postcondition: The owner gains access to the system.
+
+
+
+3. Create Shop
+
+Description: Owners create a shop by providing details like shop name, address, and contact information.
+
+Actors: Owner
+
+Precondition: Owner must be logged in.
+
+Postcondition: Shop is successfully created and stored in the database.
+
+
+
+4. Add Book
+
+Description: Owners add books to their shop by providing details such as title, author, price, stock, and description. Bulk uploads using CSV are also supported.
+
+Actors: Owner
+
+Precondition: Shop must be created and logged in.
+
+Postcondition: Books are added to the shop’s inventory.
+
+
+
+5. Manage and See Books
+
+Description: Owners can view all the books in their inventory, update their details (e.g., price, stock), and delete books if needed.
+
+Actors: Owner
+
+Precondition: Books must be present in the shop’s inventory.
+
+Postcondition: Changes are saved in the database.
+
+
+
+6. Order History
+
+Description: Owners can view all the orders placed for books in their shop, including details like order date, customer, and status.
+
+Actors: Owner
+
+Precondition: At least one order must have been placed.
+
+Postcondition: Displays the list of orders for the shop.
+
+
+
+7. Profile Details
+
+Description: Owners view and manage their profile details such as name, email, and contact number.
+
+Actors: Owner
+
+Precondition: Owner must be logged in.
+
+Postcondition: Updated details are saved in the database.
+
+
+
+
+
+---
+
+Relationships
+
+1. Association:
+
+The Owner is associated with all the above use cases.
+
+
+
+2. Include:
+
+Login is included in all actions like creating a shop, managing books, and viewing orders since it is a prerequisite.
+
+Sign Up is included as a prerequisite for login for new owners.
+
+
+
+3. Extend:
+
+Bulk Add Books via CSV extends Add Book to include a faster way of inventory management.
+
+
+
+
+
+---
+
+Diagram Overview
+
+The diagram will feature Owner as the primary actor and their interactions with the system. Use cases like Create Shop and Manage Books will be highlighted as key functionalities, while Login and Sign Up will serve as prerequisites. Let me know if you'd like me to create the visual diagram or expand further!
+
+
+
+
+Use Case Diagram Details for Admin
+
+Below are the details for the Admin role and their associated use cases in the system.
+
+
+---
+
+Actors
+
+1. Admin
+
+Manages owners, customers, books, and their profile in the system.
+
+
+
+2. System
+
+Ensures authentication and handles CRUD (Create, Read, Update, Delete) operations for entities like owners, customers, and books.
+
+
+
+
+
+---
+
+Use Cases
+
+1. Login
+
+Description: Admin logs in to access the administrative dashboard and manage system entities.
+
+Actors: Admin
+
+Precondition: Admin must have valid credentials.
+
+Postcondition: Admin gains access to the dashboard.
+
+
+
+2. Manage Owners
+
+Description: Admin can view, add, update, or delete shop owners in the system. They can also monitor the shops created by owners.
+
+Actors: Admin
+
+Precondition: Admin must be logged in.
+
+Postcondition: Owner records are updated in the system.
+
+
+
+3. Manage Customers
+
+Description: Admin can view, update, or delete customer details. They can manage customer-related issues and monitor their activity.
+
+Actors: Admin
+
+Precondition: Admin must be logged in.
+
+Postcondition: Customer records are updated in the system.
+
+
+
+4. Manage Books
+
+Description: Admin can add, update, or delete books listed by shop owners. They ensure that book information is accurate and compliant with the system's standards.
+
+Actors: Admin
+
+Precondition: Admin must be logged in.
+
+Postcondition: Book records are updated in the system.
+
+
+
+5. Profile Details
+
+Description: Admin can view and update their own profile details, such as name, email, and contact information.
+
+Actors: Admin
+
+Precondition: Admin must be logged in.
+
+Postcondition: Updated details are saved in the database.
+
+
+
+
+
+---
+
+Relationships
+
+1. Association:
+
+Admin is associated with all the listed use cases as the sole actor.
+
+
+
+2. Include:
+
+Login is included in all other use cases since it is required to access the system functionalities.
+
+
+
+3. Extend:
+
+Manage Owners extends to include managing shops and viewing owner-specific details.
+
+
+
+
+
+---
+
+Diagram Overview
+
+The diagram will display the Admin as the primary actor. The admin interacts with use cases like Manage Owners, Manage Customers, and Manage Books, with Login serving as the entry point. The Profile Details use case is an independent entity related only to the admin's own account.
+
+Let me know if you need help generating the visual representation of this use case diagram!
+
