@@ -1,0 +1,100 @@
+As a shop owner transitioning to an online platform, you need to address the primary expectations and requirements of your customers to provide them with a seamless shopping experience. Here's what customers typically want from an online book store:
+
+
+---
+
+Requirements from a Customer Perspective
+
+1. Easy Accessibility
+
+View Books Without Login: Customers prefer browsing the collection without needing to register or log in.
+
+Search and Filter Options: Users expect efficient search functionality (by title, author, genre, etc.) and filters for sorting by price, reviews, or popularity.
+
+
+2. Comprehensive Book Details
+
+A detailed product page for each book should include:
+
+Title, Author, and Genre.
+
+Description and Summary of the book.
+
+Price (with visible discounts).
+
+Availability (Stock Count).
+
+Customer Reviews and Ratings.
+
+
+
+3. Simple Cart Management
+
+Add to Cart: A straightforward way to add books.
+
+Update Cart: The ability to modify the quantity or remove items.
+
+Persistent Cart: Remember cart items for guest users using cookies and sync for logged-in users.
+
+
+4. Easy and Transparent Order Process
+
+Smooth Checkout: A simple checkout process with clear pricing, applied discounts, and shipping details.
+
+Order Confirmation: Real-time confirmation on placing an order, including book availability checks.
+
+Order Tracking: The ability to track delivery status.
+
+
+5. Personalized User Accounts
+
+Order History: Customers want access to their previous orders.
+
+Profile Management: Allow users to update their personal details (name, address, etc.).
+
+Saved Carts or Wishlists: Customers might want to save items for later purchase.
+
+
+6. Invoice and Record Keeping
+
+Downloadable Invoice: A generated PDF invoice should be provided for every purchase.
+
+Email Notifications: Automated emails for order confirmation, shipping updates, and promotional offers.
+
+
+7. Discounts and Offers
+
+Customers expect deals, coupon codes, and promotional discounts to incentivize purchases.
+
+
+8. User-Friendly Interface
+
+Mobile Compatibility: A responsive website that works seamlessly on mobile and tablets.
+
+Clean Design: Easy navigation with a visually appealing layout.
+
+
+9. Customer Support
+
+Contact Options: Provide email, chat, or phone support for resolving queries or complaints.
+
+FAQ Section: A section addressing common questions about delivery, returns, or payment.
+
+
+10. Security and Trust
+
+Customers expect their data to be secure. If online payment is integrated in the future, they require a secure payment gateway with trusted methods.
+
+
+11. Delivery Timelines
+
+Transparency about shipping timelines and costs is essential for building trust.
+
+
+
+---
+
+Why These Requirements Matter
+
+Customers prioritize convenience, transparency, and trust when shopping online. By addressing these requirements, you can enhance the user experience, build customer loyalty, and increase conversions for your book store. Meeting these needs ensures your platform stands out and meets modern e-commerce standards.
+
