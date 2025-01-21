@@ -1,0 +1,123 @@
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.*;
+
+import java.io.FileOutputStream;
+
+public class InvoiceGenerator {
+    public static void main(String[] args) {
+        Document document = new Document();
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream("Invoice.pdf"));
+            document.open();
+
+            // Adding title
+            Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16);
+            Paragraph title = new Paragraph("Tax Invoice", titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+
+            document.add(Chunk.NEWLINE);
+
+            // Adding Blinkit header
+            Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14);
+            Paragraph header = new Paragraph("blinkit", headerFont);
+            header.setAlignment(Element.ALIGN_LEFT);
+            document.add(header);
+
+            document.add(Chunk.NEWLINE);
+
+            // Adding seller details
+            PdfPTable sellerTable = new PdfPTable(2);
+            sellerTable.setWidthPercentage(100);
+            sellerTable.addCell("Sold By / Seller:");
+            sellerTable.addCell("ASVAH RETAIL PRIVATE LIMITED");
+            sellerTable.addCell("Address:");
+            sellerTable.addCell("Plot No. 32, Sumer Nagar Vistar, Block-Q,\nBalram Pura UF Khejadon Ka Bas, Jaipur - 302020");
+            sellerTable.addCell("GSTIN:");
+            sellerTable.addCell("08AAXC2877R1ZF");
+            sellerTable.addCell("FSSAI License Number:");
+            sellerTable.addCell("1082399900339");
+            document.add(sellerTable);
+
+            document.add(Chunk.NEWLINE);
+
+            // Adding invoice details
+            PdfPTable invoiceDetails = new PdfPTable(4);
+            invoiceDetails.setWidthPercentage(100);
+            invoiceDetails.addCell("Invoice Number:");
+            invoiceDetails.addCell("C272307240155163");
+            invoiceDetails.addCell("Invoice Date:");
+            invoiceDetails.addCell("21-Nov-2024");
+            invoiceDetails.addCell("Order ID:");
+            invoiceDetails.addCell("724793501");
+            invoiceDetails.addCell("Place of Supply:");
+            invoiceDetails.addCell("Rajasthan");
+            document.add(invoiceDetails);
+
+            document.add(Chunk.NEWLINE);
+
+            // Adding customer details
+            PdfPTable customerTable = new PdfPTable(2);
+            customerTable.setWidthPercentage(100);
+            customerTable.addCell("Invoice To:");
+            customerTable.addCell("Ravi Jangid");
+            customerTable.addCell("Address:");
+            customerTable.addCell("20, Ward 27, Sector 9, Mansarovar, Jaipur");
+            customerTable.addCell("Pin Code:");
+            customerTable.addCell("302020");
+            customerTable.addCell("State:");
+            customerTable.addCell("Rajasthan");
+            document.add(customerTable);
+
+            document.add(Chunk.NEWLINE);
+
+            // Adding product details
+            PdfPTable productTable = new PdfPTable(8);
+            productTable.setWidthPercentage(100);
+            productTable.addCell("Sr. No");
+            productTable.addCell("UPC");
+            productTable.addCell("Item Description");
+            productTable.addCell("MRP");
+            productTable.addCell("Discount");
+            productTable.addCell("Qty.");
+            productTable.addCell("Taxable Value");
+            productTable.addCell("Total");
+
+            // Add product row
+            productTable.addCell("1");
+            productTable.addCell("890113800239");
+            productTable.addCell("Himalaya Gentle Daily Care Protein Shampoo");
+            productTable.addCell("689.00");
+            productTable.addCell("268.00");
+            productTable.addCell("1");
+            productTable.addCell("356.78");
+            productTable.addCell("421.00");
+
+            document.add(productTable);
+
+            document.add(Chunk.NEWLINE);
+
+            // Adding total in words
+            Paragraph totalInWords = new Paragraph("Amount in Words: Four Hundred and Twenty-One Rupees And Zero Paisa Only");
+            document.add(totalInWords);
+
+            document.add(Chunk.NEWLINE);
+
+            // Adding footer
+            Paragraph footer = new Paragraph("Terms & Conditions:");
+            document.add(footer);
+
+            Paragraph terms = new Paragraph(
+                "1. For any queries, contact customer chat support through Blinkit platform.\n" +
+                "2. Visit https://foscos.fssai.gov.in/ for FSSAI status.\n" +
+                "3. Never share sensitive information like CVV, account number, or UPI Pin."
+            );
+            document.add(terms);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            document.close();
+        }
+    }
+}
