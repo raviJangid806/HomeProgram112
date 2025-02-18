@@ -1,0 +1,226 @@
+Stream API ke baare mein har ek detail ko samjhate hain, jo Java mein data processing ko ek naya level deti hai. Stream API ko samajhna important hai, kyunki yeh Java 8 se introduce hui thi aur functional programming ke concepts ko Java mein integrate karti hai.
+
+
+---
+
+1. Stream API Kya Hai?
+
+Stream API Java mein data processing ka ek mechanism hai jo collections (like List, Set) ko functional style mein process karne ki suvidha deta hai.
+
+Stream ek sequence hai jo data items ko lazily (jab tak needed ho) process karta hai.
+
+Stream ko iterative data processing ke liye use kiya jata hai, jisme operations chain hote hain (jaise filter, map, reduce).
+
+
+
+---
+
+2. Stream vs Collection
+
+Stream aur Collection mein difference samajhna zaroori hai:
+
+Collection: Yeh ek data structure hoti hai (List, Set, etc.) jo data ko store karti hai. Collection ko modify bhi kar sakte ho.
+
+Stream: Yeh ek abstraction hai, jo data ko process karta hai na ki store. Stream ki koi physical storage nahi hoti, bas data ko process karta hai aur immutable hota hai (original data change nahi hota).
+
+
+Example:
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+// Collection (List) -> Stores data
+// Stream -> Processes data without modifying original list
+Stream<Integer> numberStream = numbers.stream();
+
+
+---
+
+3. Types of Streams
+
+Stream ke 2 basic types hote hain:
+
+Sequential Stream: Yeh normal stream hota hai jisme data ek sequence mein process hota hai.
+
+Parallel Stream: Yeh multi-threading ka use karta hai jisme data multiple threads mein distribute ho jata hai, jisse processing fast ho sakti hai.
+
+
+Example:
+
+// Sequential Stream
+numbers.stream().forEach(System.out::println);
+
+// Parallel Stream
+numbers.parallelStream().forEach(System.out::println);
+
+
+---
+
+4. Stream Operations
+
+Stream operations ko 2 categories mein divide kiya ja sakta hai:
+
+a. Intermediate Operations (Lazy)
+
+Yeh operations stream ko transform karte hain, lekin yeh execute tab hote hain jab terminal operation apply kiya jata hai.
+Examples: map(), filter(), flatMap(), distinct(), sorted(), peek().
+
+Example:
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+List<Integer> evenNumbers = numbers.stream()
+    .filter(n -> n % 2 == 0)  // Intermediate operation
+    .collect(Collectors.toList());  // Terminal operation
+
+b. Terminal Operations (Eager)
+
+Yeh operations stream ko consume karte hain aur result produce karte hain. Jab terminal operation execute hota hai, tab puri stream process hoti hai.
+Examples: collect(), forEach(), reduce(), count(), findFirst(), anyMatch(), allMatch().
+
+Example:
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+long count = numbers.stream()
+    .filter(n -> n % 2 == 0)  // Intermediate operation
+    .count();  // Terminal operation
+
+
+---
+
+5. Common Stream Operations
+
+a. map()
+
+Purpose: Elements ko transform karta hai.
+
+Usage: Ek function apply karta hai har element pe.
+
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+List<Integer> squares = numbers.stream()
+    .map(n -> n * n)  // Map each element to its square
+    .collect(Collectors.toList());
+
+System.out.println(squares); // Output: [1, 4, 9, 16, 25]
+
+b. filter()
+
+Purpose: Stream ke elements ko ek condition ke basis pe filter karta hai.
+
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+List<Integer> evenNumbers = numbers.stream()
+    .filter(n -> n % 2 == 0)  // Filter even numbers
+    .collect(Collectors.toList());
+
+System.out.println(evenNumbers); // Output: [2, 4]
+
+c. reduce()
+
+Purpose: Stream ke elements ko ek single value mein reduce karta hai (jaise sum, multiplication).
+
+Usage: Combine elements using an associative accumulation function.
+
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+int sum = numbers.stream()
+    .reduce(0, (a, b) -> a + b);  // Reduce to sum
+
+System.out.println(sum);  // Output: 15
+
+d. collect()
+
+Purpose: Stream ke elements ko ek container (List, Set, Map) mein collect karna.
+
+Usage: Mostly terminal operation ke saath use hota hai.
+
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+List<Integer> evenNumbers = numbers.stream()
+    .filter(n -> n % 2 == 0)
+    .collect(Collectors.toList());
+
+System.out.println(evenNumbers); // Output: [2, 4]
+
+e. forEach()
+
+Purpose: Stream ke har element pe action perform karna.
+
+Usage: Typically terminal operation ke liye.
+
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+numbers.stream()
+    .forEach(System.out::println);  // Print each number
+
+
+---
+
+6. Short-Circuiting Operations
+
+Short-circuiting operations vo hote hain jo stream ko prematurely stop kar sakte hain agar condition meet ho jaye.
+Examples: anyMatch(), allMatch(), noneMatch(), findFirst(), findAny().
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+// anyMatch() checks if at least one element matches the condition
+boolean hasEven = numbers.stream()
+    .anyMatch(n -> n % 2 == 0);
+
+System.out.println(hasEven);  // Output: true
+
+
+---
+
+7. Parallel Streams
+
+Parallel Streams ka use multi-core processors ka full potential utilize karne ke liye hota hai. Yeh elements ko multiple threads mein divide kar deta hai.
+Usage: .parallelStream() ka use karte hain.
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+numbers.parallelStream()
+    .forEach(System.out::println);  // Process elements in parallel
+
+
+---
+
+8. Lazy Evaluation
+
+Stream API mein lazy evaluation hoti hai, iska matlab hai ki stream ko tab tak process nahi kiya jata jab tak koi terminal operation na ho.
+
+Jab intermediate operation apply karte ho (like filter(), map()), woh immediately execute nahi hote.
+
+Terminal operation (like collect(), forEach()) ke baad hi sare intermediate operations execute hote hain.
+
+
+
+---
+
+9. Advantages of Stream API
+
+Declarative Code: Code ko zyada readable aur concise banata hai.
+
+Parallelism: Easy parallel processing ke liye support hai.
+
+Functional Style: Java ko functional programming ke approach mein lana.
+
+Lazy Evaluation: Efficient processing, unnecessary operations avoid hote hain.
+
+
+
+---
+
+10. Conclusion
+
+Stream API Java mein data processing ko efficient, clean, aur functional banane ka ek powerful tool hai.
+
+Intermediate operations data ko transform karte hain.
+
+Terminal operations data ko consume karte hain.
+
+Parallel Streams performance ko optimize karte hain.
+
+
+Agar specific use case ya kisi operation pe detail chahiye, toh batana!
+
