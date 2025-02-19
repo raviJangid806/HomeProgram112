@@ -1,0 +1,40 @@
+Subject: Summary of Today's Work
+
+Topics Covered Today:
+
+1. Executors and Their Internal Execution Flow
+a. Complete: Studied the Executor Framework in Java, covering:
+
+Different types of executors (Executor, ExecutorService, ScheduledExecutorService).
+
+Various thread pool implementations (FixedThreadPool, CachedThreadPool, SingleThreadExecutor, WorkStealingPool).
+
+Task submission mechanisms (submit(), execute()) and lifecycle management (shutdown(), shutdownNow()).
+
+Internal execution flow:
+
+Task submission to the queue (e.g., LinkedBlockingQueue, SynchronousQueue).
+
+Worker thread creation and management by ThreadPoolExecutor.
+
+Handling rejected tasks via RejectedExecutionHandler.
+
+
+
+b. Key Learning: Strengthened my knowledge of how Java manages concurrency efficiently, optimizes thread usage, and balances task execution.
+
+2. Challenges Faced During Implementation
+
+Thread Pool Saturation: Encountered issues where too many tasks were submitted, leading to thread starvation. Learned to properly configure pool size based on workload.
+
+Task Rejection: Faced RejectedExecutionException when submitting tasks after shutdown. Resolved by handling rejected tasks with a proper strategy.
+
+Deadlocks & Race Conditions: Experienced unintended blocking when multiple threads accessed shared resources. Fixed by using proper synchronization mechanisms.
+
+Optimizing Performance: Initially used a SingleThreadExecutor, which caused delays. Switching to a FixedThreadPool improved performance significantly.
+
+
+
+---
+
+Let me know if this aligns with your experience!
