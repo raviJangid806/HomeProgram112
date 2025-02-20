@@ -1,0 +1,50 @@
+Subject: Summary of Today's Work
+
+Topics Covered Today:
+
+1. Scheduled Executors and Their Internal Functionality
+a. Complete: Studied the ScheduledExecutorService in Java, covering:
+
+Different scheduling methods:
+
+schedule() – Executes a task after a delay.
+
+scheduleAtFixedRate() – Executes a task at a fixed rate, considering the start time.
+
+scheduleWithFixedDelay() – Executes a task after a fixed delay between the completion of the previous execution and the start of the next.
+
+
+Internal Execution Flow:
+
+Tasks are submitted to a DelayQueue, which holds scheduled tasks until execution.
+
+Worker threads pick tasks based on their scheduled execution time.
+
+The ScheduledThreadPoolExecutor manages task execution and rescheduling.
+
+Tasks can be canceled using Future.cancel(true).
+
+
+
+b. Key Learning:
+
+Gained a deep understanding of how ScheduledExecutorService manages recurring and delayed tasks.
+
+Learned how to optimize scheduling for performance and resource efficiency.
+
+
+2. Challenges Faced During Implementation
+
+Task Overlapping: Faced issues where a task took longer than the fixed interval, leading to overlapping executions. Resolved by using scheduleWithFixedDelay() instead of scheduleAtFixedRate().
+
+Thread Pool Exhaustion: Initially used an insufficient number of threads, causing delays in task execution. Fixed by increasing the pool size in newScheduledThreadPool().
+
+Handling Task Cancellation: Had difficulty stopping scheduled tasks properly. Resolved using Future.cancel(true) to ensure immediate termination.
+
+Memory Management: Learned that if not handled correctly, scheduled tasks can keep running indefinitely. Fixed by properly shutting down the executor using shutdown() and awaitTermination().
+
+
+
+---
+
+Let me know if this covers everything!
