@@ -1,0 +1,47 @@
+Subject: Summary of Today's Work
+
+Topics Covered Today:
+
+1. JPA Revision in Spring Boot
+a. Complete: Revisited key JPA concepts, including:
+
+Entity Mapping: @Entity, @Table, @Column, @Id, @GeneratedValue.
+
+Relationships: @OneToOne, @OneToMany, @ManyToOne, @ManyToMany, @JoinColumn, @JoinTable.
+
+Inheritance Strategies: @Inheritance, @DiscriminatorColumn, @MappedSuperclass.
+
+Embedded Objects: @Embedded, @Embeddable.
+
+Transaction Management: @Transactional and its impact on session handling.
+
+Fetching Strategies: EAGER vs. LAZY loading.
+
+Querying with JPA: @Query, NamedQuery, Criteria API, Specification.
+
+Cascading and Orphan Removal: CascadeType.ALL, orphanRemoval = true.
+
+
+b. Key Learning:
+
+Improved understanding of how JPA simplifies database operations in Spring Boot.
+
+Learned how to optimize entity relationships and fetching strategies for better performance.
+
+
+2. Challenges Faced During Revision
+
+LazyInitializationException: Encountered this issue when accessing a lazily loaded collection outside the transaction scope. Resolved by using @Transactional or JOIN FETCH queries.
+
+N+1 Query Problem: Identified performance issues due to excessive queries and optimized them using @EntityGraph and proper fetching strategies.
+
+Handling Bidirectional Relationships: Ensured proper mapping to avoid infinite loops in JSON responses by using @JsonIgnore or @JsonManagedReference/@JsonBackReference.
+
+Database Schema Changes: Faced issues with schema auto-update when modifying entity structures. Resolved by properly handling spring.jpa.hibernate.ddl-auto configurations.
+
+
+
+---
+
+Let me know if this aligns with your revision!
+
